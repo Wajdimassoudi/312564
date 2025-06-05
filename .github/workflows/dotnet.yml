@@ -1,0 +1,167 @@
+html
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wajdi Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Wajdi Market</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#properties">عقارات</a></li>
+                <li><a href="#cars">سيارات</a></li>
+                <li><a href="#about">معلومات عنا</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>مرحبًا بكم في Wajdi Market</h2>
+        <p>موقعك الأفضل لشراء وبيع العقارات والسيارات.</p>
+    </section>
+
+    <section id="properties">
+        <h2>العقارات</h2>
+        <div class="property-list">
+            <div class="property">
+                <h3>عقار مميز 1</h3>
+                <p>وصف للعقار المميز 1.</p>
+                <p>السعر: 100,000 دولار</p>
+            </div>
+            <div class="property">
+                <h3>عقار مميز 2</h3>
+                <p>وصف للعقار المميز 2.</p>
+                <p>السعر: 150,000 دولار</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars">
+        <h2>السيارات</h2>
+        <div class="car-list">
+            <div class="car">
+                <h3>سيارة مميزة 1</h3>
+                <p>وصف للسيارة المميزة 1.</p>
+                <p>السعر: 20,000 دولار</p>
+            </div>
+            <div class="car">
+                <h3>سيارة مميزة 2</h3>
+                <p>وصف للسيارة المميزة 2.</p>
+                <p>السعر: 30,000 دولار</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>معلومات عنا</h2>
+        <p>نحن منصة رائدة لتجارة العقارات والسيارات.</p>
+    </section>
+
+    <section id="contact">
+        <h2>اتصل بنا</h2>
+        <form>
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" required>
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" required>
+            <label for="message">رسالتك:</label>
+            <textarea id="message" required></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2023 Wajdi Market</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+#### 3. محتوى ملف `style.css`
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px;
+}
+
+.property-list, .car-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.property, .car {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+```# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
